@@ -1,41 +1,42 @@
-<!DOCTYPE html>
-<html>
+---
+layout: post-index
+title: Latest Posts
+description: "Describe this nonsense."
+tags: [Jekyll, theme, themes, responsive, blog, modern]
+comments: false
+image:
+  feature: abstract-1.jpg
+  credit: dargadgetz
+  creditlink: http://www.dargadgetz.com/ios-7-abstract-wallpaper-pack-for-iphone-5-and-ipod-touch-retina/
+---
 
-  <head>
-    <meta charset = "utf-8">
-    <title>Stanley Park</title>
+{% for post in paginator.posts %}
+<article class="hentry">
+  <header>
+    {% if post.image.feature %}
+      <div class="entry-image-index">
+        <a href="{{ site.url }}{{ post.url }}" title="{{ post.title }}"><img src="{{ site.url }}/images/{{ post.image.feature }}" alt="{{ post.title }}"></a>
+      </div><!-- /.entry-image -->
+    {% endif %}
+    <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="{{ post.date | date_to_xmlschema }}"><a href="{{ site.url }}{{ post.url }}">{{ post.date | date: "%B %d, %Y" }}</a></time></span><span class="author vcard"><span class="fn"><a href="{{ site.url }}/about/" title="About {{ site.owner.name }}">{{ site.owner.name }}</a></span></span>
+      {% if site.reading_time %}
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        {% include read-time-index.html %}
+      </span><!-- /.entry-reading-time -->
+      {% endif %}
+    </div><!-- /.entry-meta -->
+    {% if post.link %}
+      <h1 class="entry-title"><a href="{{ site.url }}{{ post.url }}" class="permalink" rel="bookmark" title="{{ post.title }}"><i class="fa fa-bookmark"></i></a> <a href="{{ post.link }}">{{ post.title }}</a></h1>
+    {% else %}
+      <h1 class="entry-title"><a href="{{ site.url }}{{ post.url }}" rel="bookmark" title="{{ post.title }}" itemprop="url">{{ post.title }}</a></h1>
+    {% endif %}
+  </header>
+  <div class="entry-content">
+    {{ post.content }}
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+{% endfor %}
 
-    <style>
-      h1 {
-        font-size: 64px;
-        text-align: center;
-      }
-      h2 {
-        text-align: center;
-        color: hotpink;
-      }
-      h3 {
-        margin-top: 100px;
-      }
-      p b {
-        font-size: 36px;
-    }
-    img {
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    </style>
-  </head>
-
-  <body>
-    <h1>My First Page</h1>
-    <h2>I love html</h2>
-    <img src="https://cdn1.thr.com/sites/default/files/imagecache/landscape_928x523/2014/11/leonardo_dicaprio.jpg" width="600">
-    <h3>Hello World!</h3>
-
-    <p>My Name is Stanley Park and I am currently a graduate student at
-    the <b> University of Chicago.</b> </p>
-
-  </body>
-</html>
+{% include pagination.html %}
