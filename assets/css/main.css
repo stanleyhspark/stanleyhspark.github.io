@@ -19,6 +19,11 @@
 		vertical-align: baseline;
 	}
 
+	#future {
+		font-size: 48px;
+		color: #F0F8FF;
+	}
+
 	article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
 		display: block;
 	}
